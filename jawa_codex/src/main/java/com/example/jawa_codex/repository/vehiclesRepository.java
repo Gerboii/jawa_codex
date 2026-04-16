@@ -1,4 +1,7 @@
 package com.example.jawa_codex.repository;
 
-public interface vehiclesRepository {
+import com.example.jawa_codex.model.vehicles;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface vehiclesRepository extends JpaRepository<vehicles, Long> {
 }
