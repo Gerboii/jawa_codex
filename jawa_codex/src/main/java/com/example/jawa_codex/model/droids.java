@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Id;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 @Table
 public class droids {
