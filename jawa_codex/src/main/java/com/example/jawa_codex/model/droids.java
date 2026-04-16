@@ -1,9 +1,6 @@
 package com.example.jawa_codex.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,4 +15,19 @@ public class droids {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column
+    private String name;
+    @Column
+    private String model;
+    @Column
+    private int height;
+    @Column
+    private int mass;
+    @Column
+    private String sensor_color;
+    @Column
+    private String plating_color;
+    @Column
+    private String primary_function;
+    //TODO Manufacturer
 }
