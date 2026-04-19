@@ -1,9 +1,9 @@
 package com.example.jawa_codex.controller;
 
-import com.example.jawa_codex.model.Droids;
 import com.example.jawa_codex.model.Starships;
 import com.example.jawa_codex.service.StarshipsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,7 +63,23 @@ public class StarshipsController {
     }
 
     @PostMapping("create")
-    public void addStarship(){}
+    public ResponseEntity<Map<String, Object>> addStarship(@RequestBody Starships starship){
+        try {
+            Starships starshipNuevo = starshipsService.agregarStarships(starship);
+            Map<String, Object> response = new HashMap<>();
+            response.put("code", 1);
+            response.put("message", "Starship guardada con éxito");
+            response.put("data", starshipNuevo);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (DataIntegrityViolationException e) {
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("code", 3);
+            response.put("message", "Clave duplicada");
+            response.put("data", e.getMessage());
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+    }
 
     @PutMapping("update/{id}")
     public void updateStarship(){}

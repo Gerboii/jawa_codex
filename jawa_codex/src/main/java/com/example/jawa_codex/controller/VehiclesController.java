@@ -3,6 +3,7 @@ package com.example.jawa_codex.controller;
 import com.example.jawa_codex.model.Vehicles;
 import com.example.jawa_codex.service.VehiclesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,7 +63,23 @@ public class VehiclesController {
     }
 
     @PostMapping("create")
-    public void addVehicle(){}
+    public ResponseEntity<Map<String, Object>> addVehicle(@RequestBody Vehicles vehicle){
+        try {
+            Vehicles vehicleNuevo = vehiclesService.agregarVehicle(vehicle);
+            Map<String, Object> response = new HashMap<>();
+            response.put("code", 1);
+            response.put("message", "Vehículo guardado con éxito");
+            response.put("data", vehicleNuevo);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (DataIntegrityViolationException e) {
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("code", 3);
+            response.put("message", "Clave duplicada");
+            response.put("data", e.getMessage());
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+    }
 
     @PutMapping("update/{id}")
     public void updateVehicle(){}

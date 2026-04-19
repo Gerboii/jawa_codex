@@ -1,6 +1,5 @@
 package com.example.jawa_codex.service;
 
-import com.example.jawa_codex.model.Droids;
 import com.example.jawa_codex.model.Vehicles;
 import com.example.jawa_codex.repository.VehiclesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,8 @@ public class VehiclesService {
         return false;
     }
     //Recibe vehicle -> Guarda
-    public void agregarVehicle(Vehicles vehicle){
+    public Vehicles agregarVehicle(Vehicles vehicle){
         vehiclesRepository.save(vehicle);
+        return vehicle;
     }
 }

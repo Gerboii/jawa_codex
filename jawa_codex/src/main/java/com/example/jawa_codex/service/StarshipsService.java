@@ -34,7 +34,8 @@ public class StarshipsService {
         return false;
     }
     //Recibe starship -> Guarda
-    public void agregarStarships(Starships starship){
+    public Starships agregarStarships(Starships starship){
         starshipsRepository.save(starship);
+        return starship;
     }
 }

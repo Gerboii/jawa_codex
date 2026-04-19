@@ -34,7 +34,8 @@ public class DroidsService {
        return false;
     }
     //Recibe droid -> Guarda
-    public void agregarDroid(Droids droid){
+    public Droids agregarDroid(Droids droid){
         droidsRepository.save(droid);
+        return droid;
     }
 }
