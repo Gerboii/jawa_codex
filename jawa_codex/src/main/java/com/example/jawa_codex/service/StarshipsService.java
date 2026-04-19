@@ -6,25 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @Transactional
 public class StarshipsService {
     @Autowired
     private StarshipsRepository starshipsRepository;
 
-    //Recibe id -> Devuelve Starship si existe
-    public Starships buscarStarship(Long id){
-        if(starshipsRepository.findById(id).isPresent()){
-            return starshipsRepository.findById(id).get();
-        }else{
-            return null;
+    //Devuelve lista con todos los Starships
+    public List<Starships> getAllStarships() {
+        return starshipsRepository.findAll();
+    }
+
+    //Recibe ID -> Devuelve Optional Starships
+    public Optional<Starships> getById(long id){
+        return starshipsRepository.findById(id);
+    }
+
+    //Recibe Id -> Borra y devuelve True si existe, si no existe devuelve False
+    public Boolean eliminarStarships(long id){
+        if (getById(id).isPresent()) {
+            starshipsRepository.deleteById(id);
+            return true;
         }
+        return false;
     }
-    
-    public void agregarStarship(Starships starship){
+    //Recibe starship -> Guarda
+    public void agregarStarships(Starships starship){
         starshipsRepository.save(starship);
-    }
-    public void eliminarStarship(Starships starship){
-        starshipsRepository.delete(starship);
     }
 }

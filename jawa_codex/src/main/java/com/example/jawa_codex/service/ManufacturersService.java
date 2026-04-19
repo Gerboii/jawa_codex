@@ -1,11 +1,12 @@
 package com.example.jawa_codex.service;
 
 import com.example.jawa_codex.model.Manufacturers;
-import com.example.jawa_codex.model.Starships;
 import com.example.jawa_codex.repository.ManufacturersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -20,5 +21,9 @@ public class ManufacturersService {
         }else{
             return null;
         }
+    }
+    //Devuelve lista con todos los Manufacturers
+    public List<Manufacturers> getAllManufacturers() {
+        return manufacturersRepository.findAll();
     }
 }
