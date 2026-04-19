@@ -1,5 +1,6 @@
 package com.example.jawa_codex.controller;
 
+import com.example.jawa_codex.model.Droids;
 import com.example.jawa_codex.model.Starships;
 import com.example.jawa_codex.service.StarshipsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/starships")
@@ -18,7 +20,27 @@ public class StarshipsController {
     private StarshipsService starshipsService;
 
     @GetMapping("getById/{id}")
-    public void getStarshipById(){}
+    public ResponseEntity<Map<String, Object>> getStarshipById(long id){
+        Map<String, Object> response = new HashMap<>();
+        try {
+            Optional<Starships> starshipsOptional = starshipsService.getById(id);
+            if (starshipsOptional.isPresent()) {
+                response.put("code", 1);
+                response.put("message", "Starship obtenido con éxito");
+                response.put("data", starshipsOptional.get());
+            } else {
+                response.put("code", 2);
+                response.put("message", "id indicada invalida");
+                response.put("data", null);
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception e) {
+            response.put("code", 3);
+            response.put("message", "error en el endpoint");
+            response.put("data", e.getMessage());
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+    }
 
     @GetMapping("getAll")
     public ResponseEntity<Map<String, Object>> getAllStarships(){
