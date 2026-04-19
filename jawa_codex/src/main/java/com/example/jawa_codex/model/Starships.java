@@ -12,7 +12,7 @@ import org.springframework.data.annotation.Id;
 
 @Entity
 @Table
-public class starships {
+public class Starships {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

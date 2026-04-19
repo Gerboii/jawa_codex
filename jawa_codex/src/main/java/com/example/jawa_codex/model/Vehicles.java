@@ -12,7 +12,7 @@ import org.springframework.data.annotation.Id;
 
 @Entity
 @Table
-public class droids {
+public class Vehicles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -21,14 +21,20 @@ public class droids {
     @Column
     private String model;
     @Column
-    private int height;
+    private int cost_in_credits;
     @Column
-    private int mass;
+    private int lenght;
     @Column
-    private String sensor_color;
+    private int max_atmosphering_speed;
     @Column
-    private String plating_color;
+    private int crew;
     @Column
-    private String primary_function;
-    //TODO Manufacturer
+    private int passengers;
+    @Column
+    private int cargo_capacity;
+    @Column
+    private String consumables;
+    @Column
+    private String vehicle_class;
+        //TODO Manufacturer
 }
