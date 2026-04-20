@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table
 public class Droids {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -30,4 +31,7 @@ public class Droids {
     @Column
     private String primary_function;
     //TODO Manufacturer
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manufacturer_id")
+    private Manufacturers manufacturer;
 }

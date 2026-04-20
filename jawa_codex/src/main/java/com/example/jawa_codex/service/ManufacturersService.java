@@ -24,4 +24,7 @@ public class ManufacturersService {
     public List<Manufacturers> getAllManufacturers() {
         return manufacturersRepository.findAll();
     }
+
+    //One to many -> Un fabricante puede tener muchos vehiculos/droids/starships
+    //Many to one -> Un vehiculos/droids/starships puede tener solo un fabricante
 }

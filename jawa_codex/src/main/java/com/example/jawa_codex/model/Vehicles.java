@@ -35,5 +35,8 @@ public class Vehicles {
     private String consumables;
     @Column
     private String vehicle_class;
-        //TODO Manufacturer
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manufacturer_id")
+    private Manufacturers manufacturer;
 }

@@ -39,4 +39,8 @@ public class Starships {
     private int MGLT;
     @Column
     private String starship_class;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manufacturer_id")
+    private Manufacturers manufacturer;
 }
