@@ -20,7 +20,7 @@ public class VehiclesController {
     private VehiclesService vehiclesService;
 
     @GetMapping("getById/{id}")
-    public ResponseEntity<Map<String, Object>> getVehicleById(long id){
+    public ResponseEntity<Map<String, Object>> getVehicleById(@PathVariable long id){
         Map<String, Object> response = new HashMap<>();
         try {
             Optional<Vehicles> vehicleOptional = vehiclesService.getById(id);

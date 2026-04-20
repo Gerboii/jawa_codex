@@ -26,17 +26,16 @@ public class ManufacturersService {
     public List<Manufacturers> getAllManufacturers() {
         return manufacturersRepository.findAll();
     }
-
-    public List<Droids> getDroidsByManufacturerId(Long id) {
+    public Optional<List<Droids>> getDroidsByManufacturerId(Long id) {
         Optional<Manufacturers> manufacturer = manufacturersRepository.findById(id);
-        return manufacturer.map(Manufacturers::getDroids).orElse(null);
+        return manufacturer.map(Manufacturers::getDroids);
     }
-    public List<Vehicles> getVehiclesByManufacturerId(Long id) {
+    public Optional<List<Vehicles>> getVehiclesByManufacturerId(Long id) {
         Optional<Manufacturers> manufacturer = manufacturersRepository.findById(id);
-        return manufacturer.map(Manufacturers::getVehicles).orElse(null);
+        return manufacturer.map(Manufacturers::getVehicles);
     }
-    public List<Starships> getStarshipsByManufacturerId(Long id) {
+    public Optional<List<Starships>> getStarshipsByManufacturerId(Long id) {
         Optional<Manufacturers> manufacturer = manufacturersRepository.findById(id);
-        return manufacturer.map(Manufacturers::getStarships).orElse(null);
+        return manufacturer.map(Manufacturers::getStarships);
     }
 }

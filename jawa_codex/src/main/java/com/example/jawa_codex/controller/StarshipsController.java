@@ -20,7 +20,7 @@ public class StarshipsController {
     private StarshipsService starshipsService;
 
     @GetMapping("getById/{id}")
-    public ResponseEntity<Map<String, Object>> getStarshipById(long id){
+    public ResponseEntity<Map<String, Object>> getStarshipById(@PathVariable long id){
         Map<String, Object> response = new HashMap<>();
         try {
             Optional<Starships> starshipsOptional = starshipsService.getById(id);
