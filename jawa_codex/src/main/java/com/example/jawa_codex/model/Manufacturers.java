@@ -1,11 +1,12 @@
 package com.example.jawa_codex.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+import java.util.List;
+
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -17,4 +18,11 @@ public class Manufacturers {
     private long id;
     @Column
     private String name;
+
+    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
+    private List<Droids> droids;
+    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
+    private List<Vehicles> vehicles;
+    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
+    private List<Starships> starships;
 }
