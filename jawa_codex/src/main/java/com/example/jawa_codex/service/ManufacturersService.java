@@ -2,6 +2,8 @@ package com.example.jawa_codex.service;
 
 import com.example.jawa_codex.model.Droids;
 import com.example.jawa_codex.model.Manufacturers;
+import com.example.jawa_codex.model.Starships;
+import com.example.jawa_codex.model.Vehicles;
 import com.example.jawa_codex.repository.ManufacturersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,16 @@ public class ManufacturersService {
         return manufacturersRepository.findAll();
     }
 
-    //One to many -> Un fabricante puede tener muchos vehiculos/droids/starships
-    //Many to one -> Un vehiculos/droids/starships puede tener solo un fabricante
+    public List<Droids> getDroidsByManufacturerId(Long id) {
+        Optional<Manufacturers> manufacturer = manufacturersRepository.findById(id);
+        return manufacturer.map(Manufacturers::getDroids).orElse(null);
+    }
+    public List<Vehicles> getVehiclesByManufacturerId(Long id) {
+        Optional<Manufacturers> manufacturer = manufacturersRepository.findById(id);
+        return manufacturer.map(Manufacturers::getVehicles).orElse(null);
+    }
+    public List<Starships> getStarshipsByManufacturerId(Long id) {
+        Optional<Manufacturers> manufacturer = manufacturersRepository.findById(id);
+        return manufacturer.map(Manufacturers::getStarships).orElse(null);
+    }
 }
