@@ -1,5 +1,6 @@
 package com.example.jawa_codex.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,8 +30,10 @@ public class Droids {
     private String plating_color;
     @Column
     private String primary_function;
-    //TODO Manufacturer
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manufacturer_id")
+    //Añadido para evitar recursividad en JSON
+    @JsonIgnoreProperties({"droids", "vehicles", "starships"})
     private Manufacturers manufacturer;
 }

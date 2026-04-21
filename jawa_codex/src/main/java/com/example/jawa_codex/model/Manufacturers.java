@@ -1,5 +1,6 @@
 package com.example.jawa_codex.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,10 +20,14 @@ public class Manufacturers {
     @Column
     private String name;
 
+    //Evito el bucle infinito de JSON en ambos sentidos
     @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("manufacturer")
     private List<Droids> droids;
     @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("manufacturer")
     private List<Vehicles> vehicles;
     @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("manufacturer")
     private List<Starships> starships;
 }
