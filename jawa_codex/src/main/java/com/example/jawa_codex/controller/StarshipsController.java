@@ -85,5 +85,27 @@ public class StarshipsController {
     public void updateStarship(){}
 
     @DeleteMapping("delete/{id}")
-    public void deleteStarship(){}
+    public ResponseEntity<Map<String, Object>> deleteStarship(@PathVariable long id) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            Boolean isDeleted = starshipsService.eliminarStarships(id);
+
+            if (isDeleted) {
+                response.put("code", 1);
+                response.put("message", "Nave eliminado con éxito");
+                response.put("data", id);
+            } else {
+                response.put("code", 2);
+                response.put("message", "Id indicada inválida o el nave no existe");
+                response.put("data", null);
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+
+        } catch (Exception e) {
+            response.put("code", 3);
+            response.put("message", "Error en el endpoint al intentar eliminar");
+            response.put("data", e.getMessage());
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+    }
 }

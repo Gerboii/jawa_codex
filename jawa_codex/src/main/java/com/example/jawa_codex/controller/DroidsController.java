@@ -85,6 +85,29 @@ public class DroidsController {
     public void updateDroid(){}
 
     @DeleteMapping("delete/{id}")
-    public void deleteDroid(){}
+    public ResponseEntity<Map<String, Object>> deleteDroid(@PathVariable long id) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            // El service nos devuelve true si se eliminó y false si no existía
+            Boolean isDeleted = droidsService.eliminarDroid(id);
+
+            if (isDeleted) {
+                response.put("code", 1);
+                response.put("message", "Droide eliminado con éxito");
+                response.put("data", id);
+            } else {
+                response.put("code", 2);
+                response.put("message", "Id indicada inválida o el droide no existe");
+                response.put("data", null);
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+
+        } catch (Exception e) {
+            response.put("code", 3);
+            response.put("message", "Error en el endpoint al intentar eliminar");
+            response.put("data", e.getMessage());
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+    }
 
 }
