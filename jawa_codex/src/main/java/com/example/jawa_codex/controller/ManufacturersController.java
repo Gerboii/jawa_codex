@@ -25,7 +25,7 @@ public class ManufacturersController {
     private ManufacturersService manufacturersService;
 
     @GetMapping("getById/{id}")
-    public ResponseEntity<Map<String, Object>> getManufacturersById(long id){
+    public ResponseEntity<Map<String, Object>> getManufacturersById(Long id){
         Map<String, Object> response = new HashMap<>();
         try {
             Optional<Manufacturers> manufacturersOptional = manufacturersService.getById(id);
@@ -68,7 +68,7 @@ public class ManufacturersController {
     }
 
     @GetMapping("{id}/droids")
-    public ResponseEntity<Map<String, Object>> getDroidsByManufacturersId(@PathVariable long id){
+    public ResponseEntity<Map<String, Object>> getDroidsByManufacturersId(@PathVariable Long id){
         Map<String, Object> response = new HashMap<>();
         try {
             Optional<List<Droids>> droidsList = manufacturersService.getDroidsByManufacturerId(id);
@@ -90,7 +90,7 @@ public class ManufacturersController {
         }
     }
     @GetMapping("{id}/vehicles")
-    public ResponseEntity<Map<String, Object>> getVehiclesByManufacturersId(@PathVariable long id){
+    public ResponseEntity<Map<String, Object>> getVehiclesByManufacturersId(@PathVariable Long id){
         Map<String, Object> response = new HashMap<>();
         try {
             Optional<List<Vehicles>> vehiclesList = manufacturersService.getVehiclesByManufacturerId(id);
@@ -112,7 +112,7 @@ public class ManufacturersController {
         }
     }
     @GetMapping("{id}/starships")
-    public ResponseEntity<Map<String, Object>> getStarshipsByManufacturersId(@PathVariable long id){
+    public ResponseEntity<Map<String, Object>> getStarshipsByManufacturersId(@PathVariable Long id){
         Map<String, Object> response = new HashMap<>();
         try {
             Optional<List<Starships>> starshipsList = manufacturersService.getStarshipsByManufacturerId(id);

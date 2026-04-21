@@ -20,7 +20,7 @@ public class DroidsController {
     private DroidsService droidsService;
 
     @GetMapping("getById/{id}")
-    public ResponseEntity<Map<String, Object>> getDroidById(@PathVariable long id){
+    public ResponseEntity<Map<String, Object>> getDroidById(@PathVariable("id") Long id){
         Map<String, Object> response = new HashMap<>();
         try {
             Optional<Droids> droideOptional = droidsService.getById(id);
@@ -82,7 +82,7 @@ public class DroidsController {
     }
     //Pasar en el body el obj completo o sobrescribira los campos vacios como null
     @PutMapping("update/{id}")
-    public ResponseEntity<Map<String, Object>> updateDroid(@PathVariable long id, @RequestBody Droids droid) {
+    public ResponseEntity<Map<String, Object>> updateDroid(@PathVariable Long id, @RequestBody Droids droid) {
         Map<String, Object> response = new HashMap<>();
         try {
             Optional<Droids> droideActualizado = droidsService.actualizarDroid(id, droid);
@@ -107,7 +107,7 @@ public class DroidsController {
     }
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Map<String, Object>> deleteDroid(@PathVariable long id) {
+    public ResponseEntity<Map<String, Object>> deleteDroid(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
         try {
             // El service nos devuelve true si se eliminó y false si no existía

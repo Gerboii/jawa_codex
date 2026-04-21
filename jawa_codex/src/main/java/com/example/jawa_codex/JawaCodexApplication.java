@@ -34,5 +34,4 @@ public class JawaCodexApplication {
 							"⠈⠙⠛⠛⠛⠛⠛⠛⠻⠿⣿⣿⣿⠿⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
 		SpringApplication.run(JawaCodexApplication.class, args);
 	}
-
 }

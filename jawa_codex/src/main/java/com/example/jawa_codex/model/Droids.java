@@ -2,7 +2,10 @@ package com.example.jawa_codex.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -15,15 +18,15 @@ public class Droids {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column
     private String name;
     @Column
     private String model;
     @Column
-    private int height;
+    private Integer height;
     @Column
-    private int mass;
+    private Integer mass;
     @Column
     private String sensor_color;
     @Column

@@ -1,6 +1,5 @@
 package com.example.jawa_codex.service;
 
-import com.example.jawa_codex.model.Droids;
 import com.example.jawa_codex.model.Vehicles;
 import com.example.jawa_codex.repository.VehiclesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +21,12 @@ public class VehiclesService {
     }
 
     //Recibe ID -> Devuelve Optional Vehicle
-    public Optional<Vehicles> getById(long id){
+    public Optional<Vehicles> getById(Long id){
         return vehiclesRepository.findById(id);
     }
 
     //Recibe Id -> Borra y devuelve True si existe, si no existe devuelve False
-    public Boolean eliminarVehicle(long id){
+    public Boolean eliminarVehicle(Long id){
         if (getById(id).isPresent()) {
             vehiclesRepository.deleteById(id);
             return true;
@@ -40,7 +39,7 @@ public class VehiclesService {
         return vehicle;
     }
     //Recibe ID y nuevos datos -> Actualiza y devuelve Optional Droid
-    public Optional<Vehicles> actualizarVehicle(long id, Vehicles vehicleActualizado){
+    public Optional<Vehicles> actualizarVehicle(Long id, Vehicles vehicleActualizado){
         if (vehiclesRepository.existsById(id)) {
             //Fuerzo que el ID del objeto sea el mismo que el de la URL por seguridad
             vehicleActualizado.setId(id);

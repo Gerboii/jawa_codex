@@ -21,12 +21,12 @@ public class DroidsService {
     }
 
     //Recibe ID -> Devuelve Optional Droid
-    public Optional<Droids> getById(long id){
+    public Optional<Droids> getById(Long id){
         return droidsRepository.findById(id);
     }
 
     //Recibe Id -> Borra y devuelve True si existe, si no existe devuelve False
-    public Boolean eliminarDroid(long id){
+    public Boolean eliminarDroid(Long id){
        if (getById(id).isPresent()) {
            droidsRepository.deleteById(id);
            return true;
@@ -41,7 +41,7 @@ public class DroidsService {
     }
 
     //Recibe ID y nuevos datos -> Actualiza y devuelve Optional Droid
-    public Optional<Droids> actualizarDroid(long id, Droids droidActualizado){
+    public Optional<Droids> actualizarDroid(Long id, Droids droidActualizado){
         if (droidsRepository.existsById(id)) {
             //Fuerzo que el ID del objeto sea el mismo que el de la URL por seguridad
             droidActualizado.setId(id);

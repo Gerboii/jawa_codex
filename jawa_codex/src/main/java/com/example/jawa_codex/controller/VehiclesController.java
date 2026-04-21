@@ -1,6 +1,5 @@
 package com.example.jawa_codex.controller;
 
-import com.example.jawa_codex.model.Droids;
 import com.example.jawa_codex.model.Vehicles;
 import com.example.jawa_codex.service.VehiclesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class VehiclesController {
     private VehiclesService vehiclesService;
 
     @GetMapping("getById/{id}")
-    public ResponseEntity<Map<String, Object>> getVehicleById(@PathVariable long id){
+    public ResponseEntity<Map<String, Object>> getVehicleById(@PathVariable Long id){
         Map<String, Object> response = new HashMap<>();
         try {
             Optional<Vehicles> vehicleOptional = vehiclesService.getById(id);
@@ -84,7 +83,7 @@ public class VehiclesController {
 
     //Pasar en el body el obj completo o sobrescribira los campos vacios como null
     @PutMapping("update/{id}")
-    public ResponseEntity<Map<String, Object>> updateDroid(@PathVariable long id, @RequestBody Vehicles vehicle) {
+    public ResponseEntity<Map<String, Object>> updateDroid(@PathVariable Long id, @RequestBody Vehicles vehicle) {
         Map<String, Object> response = new HashMap<>();
         try {
             Optional<Vehicles> vehicleActualizado = vehiclesService.actualizarVehicle(id, vehicle);
@@ -109,7 +108,7 @@ public class VehiclesController {
     }
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Map<String, Object>> deleteVehicle(@PathVariable long id) {
+    public ResponseEntity<Map<String, Object>> deleteVehicle(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
         try {
             Boolean isDeleted = vehiclesService.eliminarVehicle(id);

@@ -1,6 +1,5 @@
 package com.example.jawa_codex.controller;
 
-import com.example.jawa_codex.model.Droids;
 import com.example.jawa_codex.model.Starships;
 import com.example.jawa_codex.service.StarshipsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class StarshipsController {
     private StarshipsService starshipsService;
 
     @GetMapping("getById/{id}")
-    public ResponseEntity<Map<String, Object>> getStarshipById(@PathVariable long id){
+    public ResponseEntity<Map<String, Object>> getStarshipById(@PathVariable Long id){
         Map<String, Object> response = new HashMap<>();
         try {
             Optional<Starships> starshipsOptional = starshipsService.getById(id);
@@ -84,7 +83,7 @@ public class StarshipsController {
 
     //Pasar en el body el obj completo o sobrescribira los campos vacios como null
     @PutMapping("update/{id}")
-    public ResponseEntity<Map<String, Object>> updateStarship(@PathVariable long id, @RequestBody Starships starship) {
+    public ResponseEntity<Map<String, Object>> updateStarship(@PathVariable Long id, @RequestBody Starships starship) {
         Map<String, Object> response = new HashMap<>();
         try {
             Optional<Starships> starshipActualizado = starshipsService.actualizarStarship(id, starship);
@@ -109,7 +108,7 @@ public class StarshipsController {
     }
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Map<String, Object>> deleteStarship(@PathVariable long id) {
+    public ResponseEntity<Map<String, Object>> deleteStarship(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
         try {
             Boolean isDeleted = starshipsService.eliminarStarships(id);

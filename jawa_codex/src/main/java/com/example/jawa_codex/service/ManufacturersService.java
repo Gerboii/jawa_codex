@@ -19,7 +19,7 @@ public class ManufacturersService {
     private ManufacturersRepository manufacturersRepository;
 
     //Recibe id -> Devuelve Manufacturer si existe
-    public Optional<Manufacturers> getById(long id){
+    public Optional<Manufacturers> getById(Long id){
         return manufacturersRepository.findById(id);
     }
     //Devuelve lista con todos los Manufacturers

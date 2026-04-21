@@ -2,7 +2,10 @@ package com.example.jawa_codex.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -14,23 +17,23 @@ import lombok.*;
 public class Vehicles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column
     private String name;
     @Column
     private String model;
     @Column
-    private int cost_in_credits;
+    private Integer cost_in_credits;
     @Column
-    private int lenght;
+    private Integer lenght;
     @Column
-    private int max_atmosphering_speed;
+    private Integer max_atmosphering_speed;
     @Column
-    private int crew;
+    private Integer crew;
     @Column
-    private int passengers;
+    private Integer passengers;
     @Column
-    private int cargo_capacity;
+    private Integer cargo_capacity;
     @Column
     private String consumables;
     @Column

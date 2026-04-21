@@ -1,6 +1,5 @@
 package com.example.jawa_codex.service;
 
-import com.example.jawa_codex.model.Droids;
 import com.example.jawa_codex.model.Starships;
 import com.example.jawa_codex.repository.StarshipsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +21,12 @@ public class StarshipsService {
     }
 
     //Recibe ID -> Devuelve Optional Starships
-    public Optional<Starships> getById(long id){
+    public Optional<Starships> getById(Long id){
         return starshipsRepository.findById(id);
     }
 
     //Recibe Id -> Borra y devuelve True si existe, si no existe devuelve False
-    public Boolean eliminarStarships(long id){
+    public Boolean eliminarStarships(Long id){
         if (getById(id).isPresent()) {
             starshipsRepository.deleteById(id);
             return true;
@@ -41,7 +40,7 @@ public class StarshipsService {
     }
 
     //Recibe ID y nuevos datos -> Actualiza y devuelve Optional Droid
-    public Optional<Starships> actualizarStarship(long id, Starships starshipActualizado){
+    public Optional<Starships> actualizarStarship(Long id, Starships starshipActualizado){
         if (starshipsRepository.existsById(id)) {
             //Fuerzo que el ID del objeto sea el mismo que el de la URL por seguridad
             starshipActualizado.setId(id);
