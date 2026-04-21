@@ -1,5 +1,6 @@
 package com.example.jawa_codex.service;
 
+import com.example.jawa_codex.model.Droids;
 import com.example.jawa_codex.model.Starships;
 import com.example.jawa_codex.repository.StarshipsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,18 @@ public class StarshipsService {
     public Starships agregarStarships(Starships starship){
         starshipsRepository.save(starship);
         return starship;
+    }
+
+    //Recibe ID y nuevos datos -> Actualiza y devuelve Optional Droid
+    public Optional<Starships> actualizarStarship(long id, Starships starshipActualizado){
+        if (starshipsRepository.existsById(id)) {
+            //Fuerzo que el ID del objeto sea el mismo que el de la URL por seguridad
+            starshipActualizado.setId(id);
+            //Al tener un Id existente, hace un UPDATE en lugar de un INSERT
+            Starships guardado = starshipsRepository.save(starshipActualizado);
+            return Optional.of(guardado);
+        }
+        //Si no existe, devuelve un Optional vacío
+        return Optional.empty();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.jawa_codex.service;
 
+import com.example.jawa_codex.model.Droids;
 import com.example.jawa_codex.model.Vehicles;
 import com.example.jawa_codex.repository.VehiclesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,17 @@ public class VehiclesService {
     public Vehicles agregarVehicle(Vehicles vehicle){
         vehiclesRepository.save(vehicle);
         return vehicle;
+    }
+    //Recibe ID y nuevos datos -> Actualiza y devuelve Optional Droid
+    public Optional<Vehicles> actualizarVehicle(long id, Vehicles vehicleActualizado){
+        if (vehiclesRepository.existsById(id)) {
+            //Fuerzo que el ID del objeto sea el mismo que el de la URL por seguridad
+            vehicleActualizado.setId(id);
+            //Al tener un Id existente, hace un UPDATE en lugar de un INSERT
+            Vehicles guardado = vehiclesRepository.save(vehicleActualizado);
+            return Optional.of(guardado);
+        }
+        //Si no existe, devuelve un Optional vacío
+        return Optional.empty();
     }
 }

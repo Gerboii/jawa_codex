@@ -1,5 +1,6 @@
 package com.example.jawa_codex.controller;
 
+import com.example.jawa_codex.model.Droids;
 import com.example.jawa_codex.model.Vehicles;
 import com.example.jawa_codex.service.VehiclesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,8 +82,31 @@ public class VehiclesController {
         }
     }
 
+    //Pasar en el body el obj completo o sobrescribira los campos vacios como null
     @PutMapping("update/{id}")
-    public void updateVehicle(){}
+    public ResponseEntity<Map<String, Object>> updateDroid(@PathVariable long id, @RequestBody Vehicles vehicle) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            Optional<Vehicles> vehicleActualizado = vehiclesService.actualizarVehicle(id, vehicle);
+
+            if (vehicleActualizado.isPresent()) {
+                response.put("code", 1);
+                response.put("message", "Vehículo actualizado con éxito");
+                response.put("data", vehicleActualizado.get());
+            } else {
+                response.put("code", 2);
+                response.put("message", "Id indicada inválida o el vehículo no existe");
+                response.put("data", null);
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+
+        } catch (Exception e) {
+            response.put("code", 3);
+            response.put("message", "Error en el endpoint al intentar actualizar");
+            response.put("data", e.getMessage());
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+    }
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity<Map<String, Object>> deleteVehicle(@PathVariable long id) {

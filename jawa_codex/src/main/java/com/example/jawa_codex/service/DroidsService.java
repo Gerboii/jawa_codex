@@ -39,4 +39,17 @@ public class DroidsService {
         droidsRepository.save(droid);
         return droid;
     }
+
+    //Recibe ID y nuevos datos -> Actualiza y devuelve Optional Droid
+    public Optional<Droids> actualizarDroid(long id, Droids droidActualizado){
+        if (droidsRepository.existsById(id)) {
+            //Fuerzo que el ID del objeto sea el mismo que el de la URL por seguridad
+            droidActualizado.setId(id);
+            //Al tener un Id existente, hace un UPDATE en lugar de un INSERT
+            Droids guardado = droidsRepository.save(droidActualizado);
+            return Optional.of(guardado);
+        }
+        //Si no existe, devuelve un Optional vacío
+        return Optional.empty();
+    }
 }
